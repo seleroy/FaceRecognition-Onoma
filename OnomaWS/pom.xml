@@ -1,0 +1,97 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.onoma.webservice</groupId>
+  <artifactId>OnomaWS</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>war</packaging>
+  <name>OnomaWS Maven </name>
+
+  	<properties>
+        <jersey2.version>2.6</jersey2.version>
+        <jaxrs.version>2.0.1</jaxrs.version>
+    </properties>
+  
+  	<dependencies>
+  		<!--  Project -->
+  		<dependency> 
+    		<groupId>com.onoma.fd</groupId>
+   			 <artifactId>FaceDetectionUtils</artifactId>
+   			 <version>0.0.1-SNAPSHOT</version>
+   			 <type>jar</type>
+		</dependency>
+		<!--  JSON converter -->
+		<dependency>
+   		 <groupId>com.google.code.gson</groupId>
+    	<artifactId>gson</artifactId>
+    	<version>2.8.5</version>
+		</dependency>
+		<!--  Java CV -->
+		 <dependency>
+     		 <groupId>org.bytedeco.javacpp-presets</groupId>
+     		 <artifactId>opencv-platform</artifactId>
+    		  <version>3.4.2-1.4.2</version>
+		</dependency>
+		
+        <!-- JAX-RS -->
+        <dependency>
+   		<groupId>javax.servlet</groupId>
+   		 <artifactId>javax.servlet-api</artifactId>
+   		 <version>3.1.0</version>
+   		 <scope>provided</scope>
+		</dependency>
+        <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>javax.ws.rs-api</artifactId>
+            <version>${jaxrs.version}</version>
+        </dependency>
+        <!-- Jersey 2.19 -->
+        <dependency>
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <artifactId>jersey-container-servlet</artifactId>
+            <version>${jersey2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-server</artifactId>
+            <version>${jersey2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-client</artifactId>
+            <version>${jersey2.version}</version>
+        </dependency>
+        <dependency>
+    <groupId>org.glassfish.jersey.media</groupId>
+    <artifactId>jersey-media-multipart</artifactId>
+    <version>${jersey2.version}</version>
+	</dependency>
+    </dependencies>
+  
+  	<build>
+        <finalName>OnomaWS</finalName>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                 <version>3.8.0</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+            
+             <!-- Embedded Apache Tomcat required for testing war -->
+      <plugin>
+        <groupId>org.apache.tomcat.maven</groupId>
+        <artifactId>tomcat7-maven-plugin</artifactId>
+        <version>2.2</version>
+        <configuration>
+                    <url>http://localhost:8080/manager/text</url>
+                    <server>TomcatServer</server>
+                    <path>/OnomaWS</path>
+             </configuration>
+      </plugin>
+        </plugins>
+    </build>
+  
+  
+</project>
